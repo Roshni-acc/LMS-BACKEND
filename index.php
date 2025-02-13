@@ -1,173 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel = "stylesheet" href = "./assets/css/style.css" />
-    <title>Dashboard</title>
-</head>
-<script src="./assets/Js/518e5b18ce.js" crossorigin="anonymous"></script>
-<body>
-    <!--navbar start  -->
+<?php
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <div class="container-fluid">
-            <!-- offcanvas trigger start -->
-              <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-               <!-- offcanvas trigger stop -->
-          <a class="navbar-brand text-uppercase fw-bold text-uppercase me-auto" href="#">Roshni's Library</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="d-flex ms-auto " role="search">
-                <div class="input-group my-3 mg-lg-0 ">
-                    <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary btn-primary text-white" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
-                  </div>
-            </form>
-            <ul class="navbar-nav  mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src= ".\assets\images\roshpic.jpg" class= "user-icon" />
-                    Admin
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">My Profile </a></li>
-                    <li><a class="dropdown-item" href="#">Change Password</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
-                  </ul>
-                </li>
-              </ul>
-          </div>
-        </div>
-      </nav>
-    <!-- navbar stop -->
-   <!-- off canvas left side bar  -->
-   
+// $base_url ="http://localhost/LMS_Backend/LMS-BACKEND/";
+// DIR_URL =$_SERVER['DOCUMENT_ROOT'] ."/LMS_Backend/LMS-BACKEND/";
+// do not exit it will not reload the page 
+
+include_once ( "config/config.php");
+include_once (DIR_URL.  "include/header.php");
+include_once (DIR_URL.  "include/topbar.php");
+include_once (DIR_URL.  "include/sidebar.php");
+
+?>
+
+
+
+    
   
-  <div class="offcanvas offcanvas-start bg-dark text-white sidebar-nav" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-body">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-             <div class = "text-secondary small text-uppercase fw-bold">Core </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-gauge me-1"></i>Dashboard</a>
-              </li>
-              <li class="nav-item my-0">
-                <hr/>
-               </li>
-           
-               <li class="nav-item">
-                <div class = "text-secondary small text-uppercase fw-bold">Inventory </div>
-               </li>
-            <li class="nav-item ">
-                <a class="nav-link sidebar-link " data-bs-toggle="collapse" href="#booksmgmt" role="button" aria-expanded="false" aria-controls="booksmgmt">
-                    <i class="fa-solid fa-book " me-1></i> Books Management
-                    <span class ="right-icon float-end"><i class="fa-solid fa-chevron-down "></i></span>
-                  </a>
-                  <div class="collapse" id="booksmgmt">
-                    <div>
-                        <ul class="navbar-nav ps-3 ">
-                      <li>
-                        <a href = "./add-book.html" class ="nav-link"><i class="fa-solid fa-plus me-2 "></i>Add New </a>
-                      </li>
-                      <li>
-                        <a href = "./manage-book.html" class ="nav-link"><i class="fa-solid fa-list me-2"></i>Manage All </a>
-                      </li>
-
-                        </ul>
-                     
-                    </div>
-                  </div>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link sidebar-link " data-bs-toggle="collapse" href="#studentmgmt" role="button" aria-expanded="false" aria-controls="studentmgmt">
-                    <i class="fa-solid fa-users " me-1></i> Students
-                    <span class ="right-icon float-end"><i class="fa-solid fa-chevron-down "></i></span>
-                  </a>
-                  <div class="collapse" id="studentmgmt">
-                    <div>
-                        <ul class="navbar-nav ps-3 ">
-                      <li>
-                        <a href = "./add-student.html" class ="nav-link"><i class="fa-solid fa-plus me-2 "></i>Add New </a>
-                      </li>
-                      <li>
-                        <a href = "./manage-students.html" class ="nav-link"><i class="fa-solid fa-list me-2"></i>Manage All </a>
-                      </li>
-
-                        </ul>
-                     
-                    </div>
-                  </div>
-            </li>
-
-
-            <li class="nav-item my-0">
-                <hr/>
-               </li>
-               <li class="nav-item">
-                <div class = "text-secondary small text-uppercase fw-bold">Business </div>
-               </li>
-               <li class="nav-item ">
-                <a class="nav-link sidebar-link " data-bs-toggle="collapse" href="#booksloanmg" role="button" aria-expanded="false" aria-controls="booksloanmg">
-                    <i class="fa-solid fa-address-book me-2"></i> Books Loan
-                    <span class ="right-icon float-end"><i class="fa-solid fa-chevron-down "></i></span>
-                  </a>
-                  <div class="collapse" id="booksloanmg">
-                    <div>
-                        <ul class="navbar-nav ps-3 ">
-                      <li>
-                        <a href = "./add-loan.html" class ="nav-link"><i class="fa-solid fa-plus me-2 "></i>Add New </a>
-                      </li>
-                      <li>
-                        <a href = "./manage-loan.html" class ="nav-link"><i class="fa-solid fa-list me-2"></i>Manage All </a>
-                      </li>
-
-                        </ul>
-                     
-                    </div>
-                  </div>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link sidebar-link " data-bs-toggle="collapse" href="#studentmgmt2" role="button" aria-expanded="false" aria-controls="studentmgmt2">
-                    <i class="fa-solid fa-money-bill me-2"></i> Subscription
-                    <span class ="right-icon float-end"><i class="fa-solid fa-chevron-down "></i></span>
-                  </a>
-                  <div class="collapse" id="studentmgmt2">
-                    <div>
-                        <ul class="navbar-nav ps-3 ">
-                      <li>
-                        <a href = "#" class ="nav-link"><i class="fa-solid fa-plus me-2 "></i>Plans </a>
-                      </li>
-                      <li>
-                        <a href = "#" class ="nav-link"><i class="fa-solid fa-list me-2"></i>Purchase History </a>
-                      </li>
-
-                        </ul>
-                     
-                    </div>
-                  </div>
-            </li>
-            <li class="nav-item my-0">
-                <hr/>
-               </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-right-from-bracket me-2"></i></i>Logout</a>
-              </li>
-
-          </ul>
-    </div>
-  </div>
-
-    <!-- off canvas left side bar  -->
 <!-- main dashboard starts  -->
 
 <main class="mt-1 pt-3 ">
@@ -359,6 +206,8 @@
 </main>
 <!-- main dashboard stops -->
 
-    <script src="./assets/Js/bundle.min.js"></script>
-</body>
-</html>
+
+<?php
+ include_once (DIR_URL."include/footer.php")
+
+?>
