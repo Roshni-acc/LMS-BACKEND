@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Liter&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+    font-family: "Liter", serif;
+    font-weight: 400;
+    font-style: normal;
+    background : #F5f5f5;
+  }
+ 
+
+:root {
+    --offcanvas-width: 270px;
+    --top-navbar: 56px;
+}
+
+
+.user-icon {
+    width: 30px;
+    border-radius: 100%;
+}
+
+.sidebar-nav{
+    width: var(--offcanvas-width) !important;
+}
+
+.sidebar-link .right-icon {
+    transition: all 0.5s;
+}
+.sidebar-link[aria-expanded="true"] .right-icon{
+    transform: rotate(180deg);
+}
+
+
+@media (min-width: 992px){
+
+    .offcanvas-backdrop{
+        display:none !important;
+
+    }
+
+ .sidebar-nav{
+        transform : none !important;
+         visibility: visible !important;
+         top: var(--top-navbar) !important;
+
+    }
+    main{
+        margin-left : var(--offcanvas-width) !important;
+    }
+}
+@media (max-width: 480px){
+
+   .dashboard-count .card{
+    margin-bottom: 20px;
+  }
+ .dashboard-tabs .nav-tabs .nav-link{
+    padding: 6px;
+    font-size: 12px;
+
+ }
+
+}
