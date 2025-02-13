@@ -8,7 +8,7 @@
              <div class = "text-secondary small text-uppercase fw-bold">Core </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-gauge me-1"></i>Dashboard</a>
+                <a class="nav-link active" aria-current="page" href="<?php echo BASE_URL?>index.php"><i class="fa-solid fa-gauge me-1"></i>Dashboard</a>
               </li>
               <li class="nav-item my-0">
                 <hr/>
