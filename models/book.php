@@ -116,7 +116,7 @@ function updateBook($conn, $param) {
     $result = array ("error"=>"ISBN is required");
     return $result;
    }
-   else if (isISBNUnique($conn,$ISBN,$id)){
+   elseif (isISBNUnique($conn,$ISBN,$id)){
     $result = array ("error"=>"ISBN is already registered ");
     return $result;
    }

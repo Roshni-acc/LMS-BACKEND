@@ -16,8 +16,9 @@ if (isset($_POST['publish'])){
         exit;
     }
     else {
-        $_SESSION['error'] = is_array($res) && isset($res['error']) ? $res['error'] : "An unexpected error occurred.";
-        // header("LOCATION:". BASE_URL. "books/add.php");
+      $_SESSION['error'] = $res['error'];
+      header("LOCATION:". BASE_URL. "books/add.php");
+      exit;
     }
     }
 
