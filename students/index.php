@@ -97,47 +97,37 @@ include_once (DIR_URL.  "include/sidebar.php");
                         ?>
 
                     
-                  <tr>
-                    <th scope="row"><?php echo $i++ ?></th>
-                    <td><?php echo $rows['Name']?></td>
-                    <td><?php echo$rows['email']?> </td>
-                    <td><?php echo$rows['phone_no']?></td>
-                    <td><?php echo$rows['address']?></td>
-                   
-                    <td>
-                      <?php 
-                       if ($rows['Status' ]== 1 )
-                       echo '<span class = "badge text-bg-success">Active</span>';
-                      else  echo '<span class = "badge text-bg-danger">Inactive</span>';
-                      
-                      ?>
-                    
-                    
-                    </td>
+<tr>
+    <th scope="row"><?php echo $i++; ?></th>
+    <td><?php echo $rows['Name']; ?></td>
+    <td><?php echo $rows['email']; ?></td>
+    <td><?php echo $rows['phone_no']; ?></td>
+    <td><?php echo $rows['address']; ?></td>
+    <td>
+      <?php 
+        echo ($rows['Status'] == 1) 
+          ? '<span class="badge text-bg-success">Active</span>' 
+          : '<span class="badge text-bg-danger">Inactive</span>';
+      ?>
+    </td>
+    <td><?php echo date("d-m-Y h:i A", strtotime($rows['created_at'])); ?></td>
 
-                    <td><?php echo date ("d-m-Y  h:i  A", strtotime($rows ['created_at']))?></td>
-                    <td><a href ="<?php echo BASE_URL ?>students/edit.php?id=<?php echo $rows ['id']; ?>" class="btn btn-primary btn-sm">Edit</a></td>
-                    <td><a onclick= "return confirm ('Are you sure .Yor want to delete this student?')" href ="<?php echo BASE_URL ?>students?action=delete&id=<?php echo $rows ['id']; ?>" class="btn btn-danger btn-sm">Delete</a></td>
-                    <?php if($rows ['Status'] == 1  ) { ?>
-                    <td><a href ="<?php echo BASE_URL ?>students?action=Status&id=<?php echo $rows ['id']; ?>&Status=0" class="btn btn-warning btn-sm">Deactive </a></td>
-                    <?php } ?>
-
-                    <?php if($rows ['Status'] == 0  ) { ?>
-                    <td><a href ="<?php echo BASE_URL ?>students?action=Status&id=<?php echo $rows ['id']; ?>&Status=1" class="btn btn-success btn-sm">Active </a></td>
-                    <?php } ?>
-                  </tr>
-                  <?php }}
-                  ?>
-                  <!-- <tr>
-                    <th scope="row">2</th>
-                    <td>Indian Art And Culture </td>
-                    <td>JNK Publisher </td>
-                    <td>Jai Sharma</td>
-                    <td>12334455</td>
-                    <td><a href ="#" class="btn btn-primary btn-sm">Edit</a></td>
-                    <td><a href ="#" class="btn btn-danger btn-sm">Delete</a></td>
-                  </tr> -->
-                
+    <!-- Combine all buttons inside ONE <td> -->
+    <td>
+        <a href="<?php echo BASE_URL ?>students/edit.php?id=<?php echo $rows['id']; ?>" class="btn btn-primary btn-sm">Edit</a>
+        <a onclick="return confirm('Are you sure you want to delete this student?')" 
+           href="<?php echo BASE_URL ?>students?action=delete&id=<?php echo $rows['id']; ?>" 
+           class="btn btn-danger btn-sm">Delete</a>
+        
+        <?php if($rows['Status'] == 1) { ?>
+            <a href="<?php echo BASE_URL ?>students?action=Status&id=<?php echo $rows['id']; ?>&Status=0" 
+               class="btn btn-warning btn-sm">Deactivate</a>
+        <?php } else { ?>
+            <a href="<?php echo BASE_URL ?>students?action=Status&id=<?php echo $rows['id']; ?>&Status=1" 
+               class="btn btn-success btn-sm">Activate</a>
+        <?php } ?>
+    </td>
+</tr>     <?php } } ?>
                 </tbody>
               </table>
           </div>
@@ -151,6 +141,5 @@ include_once (DIR_URL.  "include/sidebar.php");
 
 
 <?php
- include_once (DIR_URL."include/footer.php")
-
+ include_once (DIR_URL."include/footer.php");
 ?>

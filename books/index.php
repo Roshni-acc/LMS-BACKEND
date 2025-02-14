@@ -75,20 +75,19 @@ include_once (DIR_URL.  "include/sidebar.php");
           </div>
           <div class="card-body">
             <table id="example"  class="table">
-                <thead class="table-light">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Book Name</th>
-                    <th scope="col">Publication year</th>
-                    <th scope="col">Author Name</th>
-                    <th scope="col">ISBN No.</th>
-                    <th scope="col">Category Name</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Created_At</th>
-                    <th scope="col">Action</th>
-
-                  </tr>
-                </thead>
+            <thead class="table-light">
+  <tr>
+    <th>#</th>
+    <th>Book Name</th>
+    <th>Publication Year</th>
+    <th>Author Name</th>
+    <th>ISBN No.</th>
+    <th>Category Name</th>
+    <th>Status</th>
+    <th>Created_At</th>
+    <th>Action</th> <!-- Only 1 column for actions -->
+  </tr>
+</thead>
                 <tbody>
                     <?php
                     
@@ -98,46 +97,38 @@ include_once (DIR_URL.  "include/sidebar.php");
                         ?>
 
                     
-                  <tr>
-                    <th scope="row"><?php echo $i++ ?></th>
-                    <td><?php echo $rows['title']?></td>
-                    <td><?php echo$rows['publication_year']?> </td>
-                    <td><?php echo$rows['author']?></td>
-                    <td><?php echo$rows['ISBN']?></td>
-                    <td><?php echo $rows ['cat_name']?></td>
-                    <td>
-                      <?php 
-                       if ($rows['status' ]== 1 )
-                       echo '<span class = "badge text-bg-success">Active</span>';
-                      else  echo '<span class = "badge text-bg-danger">Inactive</span>';
-                      
-                      ?>
-                    
-                    
-                    </td>
+<tr>
+    <th scope="row"><?php echo $i++ ?></th>
+    <td><?php echo $rows['title']?></td>
+    <td><?php echo $rows['publication_year']?> </td>
+    <td><?php echo $rows['author']?></td>
+    <td><?php echo $rows['ISBN']?></td>
+    <td><?php echo $rows['cat_name']?></td>
+    <td>
+      <?php 
+        echo ($rows['status'] == 1) 
+          ? '<span class="badge text-bg-success">Active</span>' 
+          : '<span class="badge text-bg-danger">Inactive</span>';
+      ?>
+    </td>
+    <td><?php echo date("d-m-Y h:i A", strtotime($rows['created_at']))?></td>
 
-                    <td><?php echo date ("d-m-Y  h:i  A", strtotime($rows ['created_at']))?></td>
-                    <td><a href ="<?php echo BASE_URL ?>books/edit.php?id=<?php echo $rows ['id']; ?>" class="btn btn-primary btn-sm">Edit</a></td>
-                    <td><a href ="<?php echo BASE_URL ?>books?action=delete&id=<?php echo $rows ['id']; ?>" class="btn btn-danger btn-sm">Delete</a></td>
-                    <?php if($rows ['status'] == 1  ) { ?>
-                    <td><a href ="<?php echo BASE_URL ?>books?action=status&id=<?php echo $rows ['id']; ?>&status=0" class="btn btn-warning btn-sm">Deactive </a></td>
-                    <?php } ?>
+    <!-- Combined action buttons inside one <td> -->
+    <td>
+        <a href="<?php echo BASE_URL ?>books/edit.php?id=<?php echo $rows['id']; ?>" class="btn btn-primary btn-sm">Edit</a>
+        <a href="<?php echo BASE_URL ?>books?action=delete&id=<?php echo $rows['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+        
+        <?php if($rows['status'] == 1) { ?>
+            <a href="<?php echo BASE_URL ?>books?action=status&id=<?php echo $rows['id']; ?>&status=0" class="btn btn-warning btn-sm">Deactivate</a>
+        <?php } else { ?>
+            <a href="<?php echo BASE_URL ?>books?action=status&id=<?php echo $rows['id']; ?>&status=1" class="btn btn-success btn-sm">Activate</a>
+        <?php } ?>
+    </td>
+</tr>
 
-                    <?php if($rows ['status'] == 0  ) { ?>
-                    <td><a href ="<?php echo BASE_URL ?>books?action=status&id=<?php echo $rows ['id']; ?>&status=1" class="btn btn-success btn-sm">Active </a></td>
-                    <?php } ?>
-                  </tr>
                   <?php }}
                   ?>
-                  <!-- <tr>
-                    <th scope="row">2</th>
-                    <td>Indian Art And Culture </td>
-                    <td>JNK Publisher </td>
-                    <td>Jai Sharma</td>
-                    <td>12334455</td>
-                    <td><a href ="#" class="btn btn-primary btn-sm">Edit</a></td>
-                    <td><a href ="#" class="btn btn-danger btn-sm">Delete</a></td>
-                  </tr> -->
+              
                 
                 </tbody>
               </table>
