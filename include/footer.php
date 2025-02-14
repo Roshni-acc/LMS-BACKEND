@@ -5,12 +5,9 @@
 <script src="<?php  echo BASE_URL?>assets/Js/dataTables.js"></script>
 <script src="<?php  echo BASE_URL?>assets/Js/jquery-3.7.1.js"></script>
 <script>
-    // $(document).ready(function(){
-    //     $('example').DataTable();
-    // });
-
-    	
-    new DataTable('#example');
+    $(document).ready(function(){
+        $('#example').DataTable();
+    });
 </script>
 </body>
 </html>

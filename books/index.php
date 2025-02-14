@@ -78,7 +78,7 @@ include_once (DIR_URL.  "include/sidebar.php");
                 <thead class="table-light">
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col"> Book Name</th>
+                    <th scope="col">Book Name</th>
                     <th scope="col">Publication year</th>
                     <th scope="col">Author Name</th>
                     <th scope="col">ISBN No.</th>
