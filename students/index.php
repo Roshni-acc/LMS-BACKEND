@@ -110,7 +110,7 @@ include_once (DIR_URL.  "include/sidebar.php");
           : '<span class="badge text-bg-danger">Inactive</span>';
       ?>
     </td>
-    <td><?php echo date("d-m-Y h:i A", strtotime($rows['created_at'])); ?></td>
+         <td><?php echo date("d-m-Y h:i A", strtotime($rows['created_at'])); ?></td>
 
     <!-- Combine all buttons inside ONE <td> -->
     <td>

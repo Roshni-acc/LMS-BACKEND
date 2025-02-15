@@ -16,10 +16,10 @@ if (isset($_POST['update'])) {
   if (isset($res['success'])) {
     $_SESSION['success'] = "Book has been updated successfully.";
     header("LOCATION:" . BASE_URL . "books");
+    exit;
   } else {
     $_SESSION['error'] = is_array($res) && isset($res['error']) ? $res['error'] : "An unexpected error occurred.";
     header("LOCATION:" . BASE_URL . "books/edit.php");
-    exit;
   }
 }
 // read get param to get book data to edit
@@ -123,6 +123,7 @@ include_once(DIR_URL .  "include/sidebar.php");
 </main>
 <!-- main dashboard stops -->
 <!-- main dashboard stops -->
+
 <?php
 include_once(DIR_URL . "include/footer.php")
 

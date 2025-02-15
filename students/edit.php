@@ -1,3 +1,4 @@
+
 <?php
 
 // $base_url ="http://localhost/LMS_Backend/LMS-BACKEND/";
@@ -17,7 +18,7 @@ if (isset($_POST['submit'])) {
     $_SESSION['success'] = "students data  has been updated successfully.";
     header("LOCATION:" . BASE_URL . "students");
   } else {
-    $_SESSION['error'] =  "An unexpected error occurred.";
+    $_SESSION['error'] =  $res['error'] ;
     header("LOCATION:" . BASE_URL . "students/edit.php");
     exit;
   }

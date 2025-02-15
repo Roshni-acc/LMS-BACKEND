@@ -10,6 +10,8 @@ function create($conn,$param){
         $errors[] = "Name is required";
     } elseif (!ctype_upper($Name[0])) {
         $errors[] = "The first letter of the name must be capitalized";
+    }elseif (!preg_match("/^[a-zA-Z ]+$/",$Name)) {
+        $errors[] = "Name should contain alphabets only.";
     }
 
     if (empty($email)) {
@@ -39,10 +41,7 @@ function create($conn,$param){
     if (!empty($errors)) {
         return ["error" => $errors];
     }
-
-
     
-
     # validation stops
     $datetime= date ("Y-m-d H:i:s");
     
@@ -125,6 +124,8 @@ function updateStudent($conn, $param){
         $errors[] = "Name is required";
     } elseif (!ctype_upper($Name[0])) {
         $errors[] = "The first letter of the name must be capitalized";
+    } elseif (!preg_match("/^[a-zA-Z ]+$/",$Name)) {
+        $errors[] = "Name should contain alphabets only.";
     }
 
     if (empty($email)) {
@@ -163,8 +164,8 @@ function updateStudent($conn, $param){
     WHERE id = '$id'";
      # Execute the query and return success/failure message
 
-
-     $result ['ssuccess'] = $conn->query($sql);
+    
+     $result ['success'] = $conn->query($sql);
      return $result;
 }
 

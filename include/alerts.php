@@ -1,26 +1,27 @@
 <?php
-if(isset($_SESSION['success'])){?>
-
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Great!</strong> <?php echo $_SESSION['success']?>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-<?php unset ($_SESSION['success']);}
-?>
+if(isset($_SESSION['success'])) { ?>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Great!</strong> <?php echo $_SESSION['success']; ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <?php unset($_SESSION['success']);
+} ?>
 
 <?php
-if(isset($_SESSION['error']) && is_array($_SESSION['error'])) {
-    foreach ($_SESSION['error'] as $error) { ?>
+if(isset($_SESSION['error'])) {
+    if (is_array($_SESSION['error'])) {
+        foreach ($_SESSION['error'] as $error) { ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Oops!</strong> <?php echo $error; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php }
+    } else { ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Oops!</strong> <?php echo $error; ?>
+            <strong>Oops!</strong> <?php echo $_SESSION['error']; ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php }
-    unset($_SESSION['error']); // Clear session error after displaying
+    unset($_SESSION['error']);
 } 
 ?>
-
-
-
-
