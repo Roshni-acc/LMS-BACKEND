@@ -75,10 +75,10 @@
                     <div>
                         <ul class="navbar-nav ps-3 ">
                       <li>
-                        <a href = "./add-loan.html" class ="nav-link"><i class="fa-solid fa-plus me-2 "></i>Add New </a>
+                        <a href = "<?php echo BASE_URL?>loans/add.php" class ="nav-link"><i class="fa-solid fa-plus me-2 "></i>Add New </a>
                       </li>
                       <li>
-                        <a href = "./manage-loan.html" class ="nav-link"><i class="fa-solid fa-list me-2"></i>Manage All </a>
+                        <a href = "<?php echo BASE_URL?>loans" class ="nav-link"><i class="fa-solid fa-list me-2"></i>Manage All </a>
                       </li>
 
                         </ul>
