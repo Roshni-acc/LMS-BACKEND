@@ -21,7 +21,7 @@
             <ul class="navbar-nav  mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src= ".\assets\images\roshpic.jpg" class= "user-icon" />
+                    <img src= "..\assets\images\roshpic.jpg" class= "user-icon" alt = "" />
                     Admin
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">

@@ -6,13 +6,58 @@
 
 include_once ( "config/config.php");
 include_once ( "config/database.php");  // contant variables are defined here 
+include_once ( "config/config.php");
+
+
+include_once (DIR_URL.  "config/database.php");
+include_once (DIR_URL.  "models/dashboard.php");
 include_once (DIR_URL.  "include/header.php");
-include_once (DIR_URL.  "include/topbar.php");
 include_once (DIR_URL.  "include/sidebar.php");
+$counts = getCounts($conn);
+$tabs = getTabData($conn);
+
+
 
 ?>
 
+<!--navbar start  -->
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark  ">
+        <div class="container-fluid">
+            <!-- offcanvas trigger start -->
+              <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+               <!-- offcanvas trigger stop -->
+          <a class="navbar-brand text-uppercase fw-bold text-uppercase me-auto" href="#">Roshni's Library</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex ms-auto " role="search">
+                <div class="input-group my-3 mg-lg-0 ">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary btn-primary text-white" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
+                  </div>
+            </form>
+            <ul class="navbar-nav  mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src= ".\assets\images\roshpic.jpg" class= "user-icon" alt = "" />
+                    Admin
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">My Profile </a></li>
+                    <li><a class="dropdown-item" href="#">Change Password</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                  </ul>
+                </li>
+              </ul>
+          </div>
+        </div>
+      </nav>
+    <!-- navbar stop -->
 
     
   
@@ -29,8 +74,8 @@ include_once (DIR_URL.  "include/sidebar.php");
         <div class="card" ;>
           <div class="card-body text-center">
             <h5 class="card-title text-uppercase ">Total Books</h5>
-            <h1>130</h1>
-            <a href="#" class="link-offset-2 link-underline link-underline-opacity-0">View More</a>
+            <h1><?php echo $counts['total_books']?></h1>
+            <a href="<?php echo BASE_URL?>books" class="link-offset-2 link-underline link-underline-opacity-0">View More</a>
           </div>
         </div>
       </div>
@@ -39,8 +84,8 @@ include_once (DIR_URL.  "include/sidebar.php");
         <div class="card" ;>
           <div class="card-body text-center">
             <h5 class="card-title text-uppercase ">Total Students</h5>
-            <h1>1200</h1>
-            <a href="#" class="link-offset-2 link-underline link-underline-opacity-0">View More</a>
+            <h1><?php echo $counts['total_students']?></h1>
+            <a href="<?php echo BASE_URL?>students" class="link-offset-2 link-underline link-underline-opacity-0">View More</a>
           </div>
         </div>
       </div>
@@ -50,8 +95,8 @@ include_once (DIR_URL.  "include/sidebar.php");
         <div class="card" ;>
           <div class="card-body text-center">
             <h5 class="card-title text-uppercase ">Total Revenue</h5>
-            <h1>1,30,000</h1>
-            <a href="#" class="link-offset-2 link-underline link-underline-opacity-0">View More</a>
+            <h1>&#8377; <?php echo number_format($counts['total_amount']) ?></h1>
+            <a href="<?php echo BASE_URL?>subscription" class="link-offset-2 link-underline link-underline-opacity-0">View More</a>
           </div>
         </div>
       </div>
@@ -60,8 +105,8 @@ include_once (DIR_URL.  "include/sidebar.php");
         <div class="card" ;>
           <div class="card-body text-center">
             <h5 class="card-title text-uppercase ">Total Books Loan</h5>
-            <h1>168</h1>
-            <a href="#" class="link-offset-2 link-underline link-underline-opacity-0">View More</a>
+            <h1><?php echo $counts['total_loans']?></h1>
+            <a href="<?php echo BASE_URL?>loans" class="link-offset-2 link-underline link-underline-opacity-0">View More</a>
           </div>
         </div>
       </div>
@@ -85,81 +130,86 @@ include_once (DIR_URL.  "include/sidebar.php");
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-        <table class="table">
-        <thead class="table-light">
+        <table class="table" >
+        <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col">Preparing for </th>
+            <th scope="col">Phone_no. </th>
             <th scope="col">Registered On</th>
             <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
+          <?php
+          $i = 1;
+           foreach($tabs['students'] as $st){
+               
+          ?>
           <tr>
-            <th scope="row">1</th>
-            <td>MArk</td>
-            <td>UPSC</td>
-            <td>10-01-25 12:30 PM</td>
-            <td><span class="badge text-bg-success">Success</span></td>
-            
+            <th scope="row"><?php echo $i++?></th>
+            <td><?php echo $st['Name']?></td>
+            <td><?php echo $st['phone_no']?></td>
+            <td><?php echo date("d-m-Y H:i A" ,  strtotime($st['created_at']))?></td>
+            <td>
+      <?php 
+        if ($st['Status'] == 1) 
+               echo '<span class="badge text-bg-success">Active</span>' ;
+          else echo '<span class="badge text-bg-danger">Inactive</span>';
+      ?>
+    </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>SSC</td>
-            <td>10-01-25 12:30 PM</td>
-            <td><span class="badge text-bg-success">Success</span></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>SSC</td>
-            <td>10-01-25 12:30 PM</td>
-            <td><span class="badge text-bg-success">Success</span></td>
-          </tr>
+        <?php
+           }
+           ?>
         </tbody>
-      </table></div>
+      </table>
+    </div>
       <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">  <table class="table">
-        <thead class="table-light">
+        <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Book Name</th>
-            <th scope="col">Loan date </th>
+            <th scope="col">Student Name </th>
+            <th scope="col">Loan Date</th>
             <th scope="col">Due Date</th>
             <th scope="col">Status</th>
           </tr>
+         
         </thead>
         <tbody>
+        <?php
+          $i = 1;
+           foreach($tabs['loans'] as $l){
+               
+          ?>
           <tr>
-            <th scope="row">1</th>
-            <td>MArk</td>
-            <td>UPSC</td>
-            <td>10-01-25 12:30 PM</td>
-            <td><span class="badge text-bg-success">Success</span></td>
+            <th scope="row"><?php echo $i++?></th>
+            <td><?php echo $l['book_title']?></td>
+            <td><?php echo $l['student_name']?></td>
+            <td><?php echo date ("d-m-Y" , strtotime($l['loan_date'])) ?></td>
+            <td><?php echo date ("d-m-Y" , strtotime($l['return_date'])) ?></td>
+            <td>
+      <?php 
+        echo ($l['is_return'] == 1) 
+          ? '<span class="badge text-bg-success">Returned</span>' 
+          : '<span class="badge text-bg-warning">Active</span>';
+      ?>
+    </td>
             
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>SSC</td>
-            <td>10-01-25 12:30 PM</td>
-            <td><span class="badge text-bg-success">Success</span></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>SSC</td>
-            <td>10-01-25 12:30 PM</td>
-            <td><span class="badge text-bg-success">Success</span></td>
-          </tr>
+        
+          <?php 
+          }
+          ?>
         </tbody>
       </table></div>
       <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">  <table class="table">
-        <thead class="table-light">
+        <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Student Name</th>
+            <th scope="col">Plan Name</th>
             <th scope="col">Amount </th>
             <th scope="col">Start Date </th>
             <th scope="col">End  Date </th>
@@ -167,31 +217,34 @@ include_once (DIR_URL.  "include/sidebar.php");
           </tr>
         </thead>
         <tbody>
+        <?php
+          $i = 1;
+           foreach($tabs['subscription'] as $s){
+               
+          ?>
           <tr>
-            <th scope="row">1</th>
-            <td>MArk</td>
-            <td>UPSC</td>
-            <td>10-01-25 12:30 PM</td>
-            <td>10-01-25 12:30 PM</td>
-            <td><span class="badge text-bg-success">Success</span></td>
+            <th scope="row"><?php echo $i++?></th>
+            <td><?php echo $s['student_name']?></td>
+            <td><?php echo $s['plan_name']?></td>
+            <td><?php echo $s['amount']?></td>
+            
+                    <td><?php echo date("d-m-y" , strtotime( $s['start_date']))?></td>
+                    <td><?php echo date("d-m-y" , strtotime( $s['end_date']))?></td>
+                    <td>
+                        <?php
+                         $today = date("Y-m-d");
+                         if($s['end_date'] >= $today)
+                         echo ' <span  class="badge text-bg-success">Active</span>';
+                        else
+                        echo ' <span  class="badge text-bg-danger">Expire</span>'; 
+                        ?>
+                    </td>
             
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>SSC</td>
-            <td>10-01-25 12:30 PM</td>
-            <td>10-01-25 12:30 PM</td>
-            <td><span class="badge text-bg-success">Success</span></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>SSC</td>
-            <td>10-01-25 12:30 PM</td>
-            <td>10-01-25 12:30 PM</td>
-            <td><span class="badge text-bg-success">Success</span></td>
-          </tr>
+          
+          <?php 
+          }
+          ?>
         </tbody>
       </table></div>
     

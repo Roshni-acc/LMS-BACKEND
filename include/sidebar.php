@@ -88,25 +88,24 @@
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link sidebar-link " data-bs-toggle="collapse" href="#studentmgmt2" role="button" aria-expanded="false" aria-controls="studentmgmt2">
-                    <i class="fa-solid fa-money-bill me-2"></i> Subscription
-                    <span class ="right-icon float-end"><i class="fa-solid fa-chevron-down "></i></span>
-                  </a>
-                  <div class="collapse" id="studentmgmt2">
-                    <div>
-                        <ul class="navbar-nav ps-3 ">
-                      <li>
-                        <a href = "#" class ="nav-link"><i class="fa-solid fa-plus me-2 "></i>Plans </a>
-                      </li>
-                      <li>
-                        <a href = "#" class ="nav-link"><i class="fa-solid fa-list me-2"></i>Purchase History </a>
-                      </li>
+    <a class="nav-link sidebar-link " data-bs-toggle="collapse" href="#subscriptionmgmt" role="button" aria-expanded="false" aria-controls="subscriptionmgmt">
+        <i class="fa-solid fa-money-bill me-2"></i> Subscription
+        <span class="right-icon float-end"><i class="fa-solid fa-chevron-down "></i></span>
+    </a>
+    <div class="collapse" id="subscriptionmgmt">
+        <div>
+            <ul class="navbar-nav ps-3">
+                <li>
+                    <a href="<?php echo BASE_URL?>subscription/index.php" class="nav-link"><i class="fa-solid fa-plus me-2"></i>Subscription Plans</a>
+                </li>
+                <li>
+                    <a href="<?php echo BASE_URL?>subscription/purchase-history.php" class="nav-link"><i class="fa-solid fa-list me-2"></i>Purchase History</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</li>
 
-                        </ul>
-                     
-                    </div>
-                  </div>
-            </li>
             <li class="nav-item my-0">
                 <hr/>
                </li>

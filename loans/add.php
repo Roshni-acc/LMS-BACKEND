@@ -100,7 +100,7 @@ include_once (DIR_URL.  "include/sidebar.php");
                       <div class="col-md-6">
                         <div class="mb-3">
                           <label for="endDate" class="form-label">Due Date</label>
-                          <input type="date" class="form-control" id="endDate"name="return_date" required >
+                          <input type="date" class="form-control" id="endDate"name="return_date">
                         </div>
                       </div>
                   

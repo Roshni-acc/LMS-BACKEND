@@ -74,7 +74,7 @@ include_once (DIR_URL.  "include/sidebar.php");
           </div>
           <div class="card-body">
             <table id="example"  class="table">
-                <thead class="table-light">
+                <thead class="table-dark">
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Book Name </th>
