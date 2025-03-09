@@ -6,7 +6,9 @@
 
 include_once ( "../config/config.php");
 include_once (DIR_URL.  "config/database.php");
+include_once (DIR_URL.  "include/middleware.php");
 include_once (DIR_URL.  "models/book.php");
+
 
 if (isset($_POST['publish'])){
     $res = storeBook($conn,$_POST);  //book.php

@@ -110,7 +110,7 @@
                 <hr/>
                </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-right-from-bracket me-2"></i></i>Logout</a>
+                <a href="<?php echo BASE_URL?>logout.php" class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-right-from-bracket me-2"></i></i>Logout</a>
               </li>
 
           </ul>

@@ -8,11 +8,16 @@ include_once(DIR_URL . "config/database.php");
 include_once(DIR_URL . "models/login.php");
 
 
+
+if(isset($_SESSION['is_user_login'])) {
+  header("Location: " . BASE_URL . 'index.php');
+  exit;
+
+} 
+
 //login functionality
 if (isset($_POST['submit'])) {
  $res = login($conn, $_POST);  
-  // print_r ($res) ;
-  // exit;
   if ($res['status'] === true) {
       $_SESSION['is_user_login'] = true;
       $_SESSION['user'] = $res['user'];

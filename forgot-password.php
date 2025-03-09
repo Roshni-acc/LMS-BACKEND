@@ -1,3 +1,38 @@
+<?php
+
+include_once("config/config.php");
+include_once(DIR_URL . "config/database.php");
+include_once(DIR_URL . "models/login.php");
+
+
+if(isset($_SESSION['is_user_login'])) {
+  header("Location: " . BASE_URL . 'index.php');
+  exit;
+
+} 
+
+
+// Forgot password functionality
+if (isset($_POST['submit'])) {
+  $res = forgotPassword($conn, $_POST);
+  if ($res['status'] == true) {
+      //$_SESSION['success'] = "Reset password code has been sent on email";
+      header("LOCATION: " . BASE_URL . 'reset-password-link.php');
+      exit;
+  } else {
+      $_SESSION['error'] = "No email found";
+      header("LOCATION: " . BASE_URL . 'forgot-password.php');
+      exit;
+  }
+}
+
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,14 +57,15 @@
                         <div class="card-body">
                           <h1 class="card-title text-uppercase fw-bold">Roshni's Library</h5>
                           <p class="card-text">Enter email to reset password!</p>
-                          <form action="./reset-password-link.php">
+                          <?php include_once (DIR_URL.  "include/alerts.php"); ?>
+                          <form action="<?php echo  BASE_URL?>forgot-password.php"  method= "post">
                             <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <label  class="form-label">Email address</label>
+                              <input type="email" class="form-control" name="email" aria-describedby="emailHelp">
                               
                             </div>
                             
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                           </form>
 
                           <hr/>

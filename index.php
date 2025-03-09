@@ -6,13 +6,21 @@
 
 include_once ( "config/config.php");
 include_once ( "config/database.php");  // contant variables are defined here 
+include_once ( "include/middleware.php");
 include_once ( "config/config.php");
+
+// session_destroy();
+
 
 
 include_once (DIR_URL.  "config/database.php");
 include_once (DIR_URL.  "models/dashboard.php");
 include_once (DIR_URL.  "include/header.php");
 include_once (DIR_URL.  "include/sidebar.php");
+
+
+
+
 $counts = getCounts($conn);
 $tabs = getTabData($conn);
 
@@ -42,15 +50,16 @@ $tabs = getTabData($conn);
             </form>
             <ul class="navbar-nav  mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+
                     <img src= ".\assets\images\roshpic.jpg" class= "user-icon" alt = "" />
-                    Admin
+                    <?php echo $_SESSION['user']['name']?>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">My Profile </a></li>
-                    <li><a class="dropdown-item" href="#">Change Password</a></li>
+                  <li><a class="dropdown-item" href="<?php echo BASE_URL?>my-profile.php">My Profile </a></li>
+                  <li><a class="dropdown-item" href="<?php echo BASE_URL?>my-profile.php">Change Password</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo BASE_URL?>logout.php">Logout</a></li>
                   </ul>
                 </li>
               </ul>

@@ -22,13 +22,13 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src= "..\assets\images\roshpic.jpg" class= "user-icon" alt = "" />
-                    Admin
+                     <?php echo $_SESSION['user']['name']?>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">My Profile </a></li>
-                    <li><a class="dropdown-item" href="#">Change Password</a></li>
+                    <li><a class="dropdown-item" href="<?php echo BASE_URL?>my-profile.php">My Profile </a></li>
+                    <li><a class="dropdown-item" href="<?php echo BASE_URL?>my-profile.php">Change Password</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo BASE_URL?>logout.php">Logout</a></li>
                   </ul>
                 </li>
               </ul>
