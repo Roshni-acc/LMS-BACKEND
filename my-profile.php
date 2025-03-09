@@ -87,7 +87,7 @@ include_once(DIR_URL . "include/sidebar.php");
                                                     <?php echo BASE_URL . 'assets/uploads/' . $_SESSION['user']['profile_pic'] ?>" class="profile-pic" />
                                         <?php } else { ?>
                                             <img src="
-                                                    <?php echo BASE_URL . 'assets/images/user.jpg' ?>" class="profile-pic" />
+                                                    <?php echo BASE_URL . 'assets/images/roshpic.jpg' ?>" class="profile-pic" />
                                         <?php } ?>
 
                                     </div>

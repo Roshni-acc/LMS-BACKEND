@@ -155,16 +155,48 @@ $res = $conn->query($sql);
 
  function updateProfile($conn,$param){
     extract($param);
-    $user_id = $_SESSION['user']['id'];
+  // upload image 
+    $uploadTo = "assets/uploads/";
+    $allowedFileTypes = array ("jpg", "png" , "jpeg" , "gif");
+    $fileName = $_FILES['profile_pic']['name'];
+    $tempPath = $_FILES['profile_pic']['tmp_name'];
 
+    $basename = basename($fileName);
+    $originalPath = $uploadTo . $fileName;
+    $fileType = pathinfo($originalPath, PATHINFO_EXTENSION);
+
+    if (!empty($fileName)){
+        if(in_array($fileType, $allowedFileTypes))
+        {
+           $upload = move_uploaded_file($tempPath , $originalPath) ;
+        
+        }
+        else {
+            return array ('status' => false  , "message" => "Invalid file format "); 
+        }
+    }
+
+  //upload image stops 
+
+
+    $user_id = $_SESSION['user']['id'];
     $datetime= date ("Y-m-d H:i:s");
-    $sql = "UPDATE users SET name = '$name' ,email = '$email' ,phone_no = '$phone_no', updated_at= '$datetime' WHERE id = '$user_id' " ;
+    $sql = "UPDATE users SET name = '$name' ,email = '$email' ,phone_no = '$phone_no', updated_at= '$datetime' ";
+    
+    if(isset($upload)){
+
+        $sql .= ",profile_pic = '$fileName'";
+        $_SESSION['user']['profile_pic'] = $fileName;
+    }
+    
+    $sql .= " WHERE id = $user_id " ;
      # Execute the query and return success/failure message
     $conn->query($sql);
     //update the User data 
      $_SESSION['user']['name'] = $name;
      $_SESSION['user']['email'] = $email;
      $_SESSION['user']['phone_no'] = $phone_no;
+   
     // to delete reset password 
     return array ('status' => true , "message" => "Profile has been updated succesfully");
 
