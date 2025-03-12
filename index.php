@@ -44,7 +44,7 @@ $tabs = getTabData($conn);
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="d-flex ms-auto " role="search">
                 <div class="input-group my-3 mg-lg-0 ">
-                    <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2"  onkeyup="searchFunction()" >
                     <button class="btn btn-outline-secondary btn-primary text-white" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
                   </div>
             </form>
@@ -280,3 +280,15 @@ $tabs = getTabData($conn);
  include_once (DIR_URL."include/footer.php")
 
 ?>
+
+<script>
+    function searchFunction() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let items = document.querySelectorAll("#searchResults li");
+
+    items.forEach(item => {
+        let text = item.textContent.toLowerCase();
+        item.style.display = text.includes(input) ? "" : "none";
+    });
+}
+</script>
