@@ -10,13 +10,28 @@ function storeBook($conn, $param) {
     # Server-side validation
     if (empty($title)) {
         $errors[] = "Title is required";
+    } elseif (!preg_match('/^[A-Z][a-zA-Z0-9\s]+$/', $title)) {
+        $errors[] = "Title must start with a capital letter and contain only letters, numbers, and spaces.";
     }
+
+
+    if (empty($author)) {
+        $errors[] = "Author is required";
+    } elseif (!preg_match('/^[A-Z][a-zA-Z\s]+$/', $author)) {
+        $errors[] = "Author name must start with a capital letter and contain only letters and spaces.";
+    }
+
+
     if (empty($ISBN)) {
         $errors[] = "ISBN is required";
+    } elseif (!ctype_digit($ISBN) || strlen($ISBN) != 13) { 
+        $errors[] = "ISBN must be exactly 13 numeric digits.";
     }
+
     if (isISBNUnique($conn, $ISBN)) {
         $errors[] = "This ISBN already exists";
     }
+
     if (isSameBookTitle($conn, $title)) {
         $errors[] = "This book title already exists";
     }
@@ -25,7 +40,12 @@ function storeBook($conn, $param) {
     if (!empty($errors)) {
         return ["error" => $errors];
     }
+    
+   
 
+    # Formatting the title and author name
+    $title = ucwords($title);
+    $author = ucwords($author);
 
     
 
@@ -108,10 +128,12 @@ function updateBooksStatus($conn , $id , $status){
 function updateBook($conn, $param) {
     extract($param);
     # Server-side validation
-   if (empty ($title)){
-    $result = array ("error"=>"title is required");
-    return $result;
-   }
+    if (empty($title)) {
+        $errors[] = "Title is required";
+    } elseif (!preg_match('/^[A-Z][a-zA-Z0-9\s]+$/', $title)) {
+        $errors[] = "Title must start with a capital letter and contain only letters, numbers, and spaces.";
+    }
+
    elseif (empty ($ISBN)){
     $result = array ("error"=>"ISBN is required");
     return $result;
@@ -120,6 +142,19 @@ function updateBook($conn, $param) {
     $result = array ("error"=>"ISBN is already registered ");
     return $result;
    }
+   elseif (empty($author)) {
+    $errors[] = "Author is required";
+} elseif (!preg_match('/^[A-Z][a-zA-Z\s]+$/', $author)) {
+    $errors[] = "Author name must start with a capital letter and contain only letters and spaces.";
+}
+
+if (empty($publication_year) || !is_numeric($publication_year) || strlen($publication_year) != 4) {
+    $errors[] = "Valid 4-digit publication year is required";
+}
+
+
+$title = ucwords($title);
+$author = ucwords($author);
 
     # validation stops
     $datetime= date ("Y-m-d H:i:s");

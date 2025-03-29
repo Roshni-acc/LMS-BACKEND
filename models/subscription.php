@@ -5,14 +5,14 @@ function create($conn, $param)
 {
     extract($param);
     ## Validation start
-    if (empty($title)) {
-        $result = array("error" => "Title is required");
+    if (empty($title) || strlen($title) < 3 || strlen($title) > 30) {
+        $result = array("error" => "Title is required an must be between 3 and 30 characters ");
         return $result;
-    } else if (empty($amount)) {
-        $result = array("error" => "Amount is required");
+    } else if (empty($amount) || !is_numeric($amount) || $amount <= 0) {
+        $result = array("error" => "Amount is required and must be a positive number ");
         return $result;
-    } else if (empty($duration)) {
-        $result = array("error" => "Duration is required");
+    } else if (empty($duration) || !is_numeric($duration) || $duration <= 0) {
+        $result = array("error" => "Duration is required and must be a positive number ");
         return $result;
     }
     ## Validation end
@@ -68,14 +68,14 @@ function update($conn, $param)
 {
     extract($param);
     ## Validation start
-    if (empty($title)) {
-        $result = array("error" => "Title is required");
+    if (empty($title) || strlen($title) < 3 || strlen($title) > 30) {
+        $result = array("error" => "Title is required an must be between 3 and 30 characters ");
         return $result;
-    } else if (empty($amount)) {
-        $result = array("error" => "Amount is required");
+    } else if (empty($amount) || !is_numeric($amount) || $amount <= 0) {
+        $result = array("error" => "Amount is required and must be a positive number ");
         return $result;
-    } else if (empty($duration)) {
-        $result = array("error" => "Duration is required");
+    } else if (empty($duration) || !is_numeric($duration) || $duration <= 0) {
+        $result = array("error" => "Duration is required and must be a positive number ");
         return $result;
     }
     ## Validation end

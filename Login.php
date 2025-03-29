@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
     display: flex;
     justify-content: center;  /* Center horizontally */
     align-items: center;      /* Center vertically */
-    height: 80vh; /* Full height */
+    height: vh; /* Full height */
 }
 
     </style>

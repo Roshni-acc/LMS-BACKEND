@@ -65,12 +65,12 @@ if (isset($_POST['submit'])) {
 
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">New Password </label>
-                                <input type="text" class="form-control" name="password">
+                                <input type="password" class="form-control" name="password">
                               </div>
 
                               <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Confirm Password </label>
-                                <input type="text" class="form-control" name="confirm_password">
+                                <input type="password" class="form-control" name="confirm_password">
                               </div>
                             
                             <button type="submit" name="submit" class="btn btn-primary">Submit</button>

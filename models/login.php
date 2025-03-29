@@ -10,6 +10,11 @@ require 'vendor/autoload.php';
 function login($conn,$param)
 {  
     extract($param);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return ['status' => false, 'message' => 'Invalid email format.'];
+    }
+
      $sql = "SELECT * from users where email='$email'  ";
    $res = $conn->query($sql);
    
@@ -93,6 +98,17 @@ function forgotPassword($conn, $param)
 
 function resetPassword($conn,$param){
     extract($param);
+
+    extract($param);
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
+        return ['status' => false, 'message' => 'Password must be at least 8 characters long, including an uppercase letter, a lowercase letter, a number, and a special character.'];
+    }
+
+    if ($password !== $confirm_password) {
+        return ['status' => false, 'message' => 'Passwords do not match.'];
+    }
+
+    
 $sql= "select * from reset_password where reset_code = '$reset_code'";
 $res = $conn->query($sql);
  if ($res->num_rows > 0 ){
@@ -126,7 +142,24 @@ $res = $conn->query($sql);
 
 // change paassword who is already logged in 
  function changePassword($conn,$param){
+
+
    extract($param);
+
+   if (!password_verify($current_pass, $current_hash)) {
+    return ['status' => false, 'message' => 'Current password is incorrect.'];
+}
+
+if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $new_pass)) {
+    return ['status' => false, 'message' => 'New password does not meet security requirements.'];
+}
+
+if ($new_pass !== $conf_pass) {
+    return ['status' => false, 'message' => 'New passwords do not match.'];
+}
+
+
+
    $hash= $_SESSION['user']['password'];
    if (password_verify($current_pass, $hash)){
     if ($new_pass === $conf_pass){
@@ -155,6 +188,14 @@ $res = $conn->query($sql);
 
  function updateProfile($conn,$param){
     extract($param);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return ['status' => false, 'message' => 'Invalid email format.'];
+    }
+
+    if (!preg_match('/^\d{10}$/', $phone_no)) {
+        return ['status' => false, 'message' => 'Invalid phone number. Must be 10 digits.'];
+    }
   // upload image 
     $uploadTo = "assets/uploads/";
     $allowedFileTypes = array ("jpg", "png" , "jpeg" );
