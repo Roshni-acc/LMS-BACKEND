@@ -1,5 +1,15 @@
 <!--navbar start  -->
 
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #343a40; /* Ensure background color remains */
+}
+
+  </style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark  ">
         <div class="container-fluid">
             <!-- offcanvas trigger start -->
@@ -43,14 +53,20 @@
         </div>
       </nav>
     <!-- navbar stop -->
-<script>
-    function searchFunction() {
-    let input = document.getElementById("searchInput").value.toLowerCase();
-    let items = document.querySelectorAll("#searchResults li");
+    <script>
+function searchFunction() {
+    let input = document.querySelector(".form-control").value;
+    let resultsContainer = document.getElementById("search-results");
 
-    items.forEach(item => {
-        let text = item.textContent.toLowerCase();
-        item.style.display = text.includes(input) ? "" : "none";
-    });
+    if (input.length > 0) {
+        fetch("search.php?query=" + encodeURIComponent(input))
+        .then(response => response.text())
+        .then(data => {
+            resultsContainer.innerHTML = data;
+        });
+    } else {
+        resultsContainer.innerHTML = "";
+    }
 }
 </script>
+

@@ -74,6 +74,7 @@ include_once (DIR_URL.  "include/sidebar.php");
           <div class="card-header">
             All students
           </div>
+         
           <div class="card-body">
             <table id="example"  class="table">
                 <thead class="table-light">

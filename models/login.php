@@ -157,7 +157,7 @@ $res = $conn->query($sql);
     extract($param);
   // upload image 
     $uploadTo = "assets/uploads/";
-    $allowedFileTypes = array ("jpg", "png" , "jpeg" , "gif");
+    $allowedFileTypes = array ("jpg", "png" , "jpeg" );
     $fileName = $_FILES['profile_pic']['name'];
     $tempPath = $_FILES['profile_pic']['tmp_name'];
 

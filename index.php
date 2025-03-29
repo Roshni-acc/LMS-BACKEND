@@ -29,6 +29,15 @@ $tabs = getTabData($conn);
 ?>
 
 <!--navbar start  -->
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #343a40; /* Ensure background color remains */
+}
+
+  </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark  ">
         <div class="container-fluid">

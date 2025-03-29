@@ -43,6 +43,15 @@ if (isset($_POST['submit'])) {
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel = "stylesheet" href = "./assets/css/style.css" />
     <title>Dashboard</title>
+    <style>
+      .login-wrapper {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    height: 80vh; /* Full height */
+}
+
+    </style>
 </head>
 <script src="./assets/Js/518e5b18ce.js" crossorigin="anonymous"></script>
 
@@ -54,7 +63,7 @@ if (isset($_POST['submit'])) {
                 <div class="card mb-5" style="max-width:900px;">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src="./assets/images/2.jpg" class="img-fluid rounded-start" alt="...">
+                        <img src="./assets/images/login_page.jpg" class="img-fluid rounded-start login-wrapper" alt="...">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
